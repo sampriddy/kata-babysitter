@@ -57,7 +57,7 @@ class Babysitter
     valid_regexes = [/^[1234] AM$/, /^1[012] PM$/, /^[56789] PM$/]
 
     unless valid_regexes.any? {|r| str =~ r}
-      raise "invalid timestring: #{str}. Valid examples: '5 AM', '10 PM'"
+      raise "invalid timestring: #{str}. Valid examples: '4 AM', '10 PM'"
     end
   end
 end

@@ -58,11 +58,11 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
   end
 
   context 'with invalid timestrings' do
-    bad_times = ['73 PM', 'Snackbot', '10 PM 5 AM', '', '5']
+    bad_times = ['73 PM', 'Snackbot', '10 PM 5 AM', '', '5', '5 AM']
 
     bad_times.each do |bad_time|
       it "you're gonna have a bad time..." do
-        msg = "invalid timestring: #{bad_time}. Valid examples: '5 AM', '10 PM'"
+        msg = "invalid timestring: #{bad_time}. Valid examples: '4 AM', '10 PM'"
         expect{subject.new(bad_time, '10 PM', '10 PM')}.to raise_error(msg)
         expect{subject.new('10 PM', bad_time, '10 PM')}.to raise_error(msg)
         expect{subject.new('10 PM', '10 PM', bad_time)}.to raise_error(msg)
