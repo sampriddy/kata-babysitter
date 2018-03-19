@@ -44,5 +44,19 @@ describe Babysitter do
         expect(subject.calculate_pay).to eq(16)
       end
     end
+
+    context 'a really long babysitting session' do
+      let(:start_time) { Time.new(2018, 03, 19, 17) }
+      let(:bed_time) { Time.new(2018, 03, 19, 22) }
+      let(:end_time) { Time.new(2018, 03, 20, 2) }
+
+      # This includes 5 hours before bedtime, 2 hours between bedtime
+      # and midnight and 2 hours after midnight. Some napkin math:
+      # (5 * 12) + (2 * 8) + (2 * 16) == (60 + 16 + 32) == 108
+
+      it 'returns 108' do
+        expect(subject.calculate_pay).to eq(108)
+      end
+    end
   end
 end
