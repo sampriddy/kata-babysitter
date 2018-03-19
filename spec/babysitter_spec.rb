@@ -4,14 +4,14 @@ require './lib/babysitter'
 describe 'Babysitter.calculate(start, stop, bedtime)' do
   let(:bed) { '10 PM' }
 
-  subject { Babysitter.new(start, stop, bed).calculate_wages }
+  subject { Babysitter }
 
   context 'start and stop are both 5 PM' do
     let(:start) { '5 PM' }
     let(:stop)  { '5 PM' }
 
     it 'returns 0' do
-      expect(subject).to eq 0
+      expect(subject.new(start, stop, bed).calculate_wages).to eq 0
     end
   end
 
@@ -20,7 +20,7 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
     let(:stop)  { '6 PM' }
 
     it 'returns 12' do
-      expect(subject).to eq(12)
+      expect(subject.new(start, stop, bed).calculate_wages).to eq(12)
     end
   end
 
@@ -29,7 +29,7 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
     let(:stop)  { '11 PM' }
 
     it 'returns 8' do
-      expect(subject).to eq(8)
+      expect(subject.new(start, stop, bed).calculate_wages).to eq(8)
     end
   end
 
@@ -38,7 +38,7 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
     let(:stop)  { '2 AM' }
 
     it 'returns 16' do
-      expect(subject).to eq(16)
+      expect(subject.new(start, stop, bed).calculate_wages).to eq(16)
     end
   end
 
@@ -53,7 +53,7 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
     # total: $108
 
     it 'returns 108' do
-      expect(subject).to eq(108)
+      expect(subject.new(start, stop, bed).calculate_wages).to eq(108)
     end
   end
 
@@ -63,9 +63,9 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
     bad_times.each do |bad_time|
       it "you're gonna have a bad time..." do
         msg = "invalid timestring: #{bad_time}. Valid examples: '5 AM', '10 PM'"
-        expect{subject(bad_time, '10 PM', '10 PM')}.to raise_error(msg)
-        expect{subject('10 PM', bad_time, '10 PM')}.to raise_error(msg)
-        expect{subject('10 PM', '10 PM', bad_time)}.to raise_error(msg)
+        expect{subject.new(bad_time, '10 PM', '10 PM')}.to raise_error(msg)
+        expect{subject.new('10 PM', bad_time, '10 PM')}.to raise_error(msg)
+        expect{subject.new('10 PM', '10 PM', bad_time)}.to raise_error(msg)
       end
     end
   end

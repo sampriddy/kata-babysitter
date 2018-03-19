@@ -3,6 +3,8 @@ class Babysitter
   # "#{integer} {AM/PM}", i.e "5 PM", "3 AM", and so on.
 
   def initialize(start, stop, bed)
+    [start, stop, bed].each {|str| validate_timestring! str}
+
     @start, @stop, @bed = [start, stop, bed].map {|str| parse_timestring(str)}
   end
 
@@ -48,6 +50,14 @@ class Babysitter
     case period
     when "AM" then initial_integer.to_i + 24
     when "PM" then initial_integer.to_i + 12
+    end
+  end
+
+  def validate_timestring!(str)
+    valid_regexes = [/^[1234] AM$/, /^1[012] PM$/, /^[56789] PM$/]
+
+    unless valid_regexes.any? {|r| str =~ r}
+      raise "invalid timestring: #{str}. Valid examples: '5 AM', '10 PM'"
     end
   end
 end
