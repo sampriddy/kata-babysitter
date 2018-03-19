@@ -9,6 +9,17 @@ class Babysitter
   end
 
   def calculate_wages
-    12 * (@stop - @start)
+    12 * hours_before_bedtime + 8 * hours_between_bedtime_and_midnight
+  end
+
+  private
+  def hours_before_bedtime
+    res = [@stop, @bed].min - @start
+    res >= 0 ? res : 0
+  end
+
+  def hours_between_bedtime_and_midnight
+    res = [24, @stop].min - [@bed, @start].max
+    res >= 0 ? res : 0
   end
 end

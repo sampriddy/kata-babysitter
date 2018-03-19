@@ -2,7 +2,7 @@ require 'rspec'
 require './lib/babysitter'
 
 describe 'Babysitter.calculate(start, stop, bedtime)' do
-  let(:bed)   { 22 }
+  let(:bed) { 22 }
 
   subject { Babysitter.new(start, stop, bed).calculate_wages }
 
@@ -21,6 +21,15 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
 
     it 'returns 12' do
       expect(subject).to eq(12)
+    end
+  end
+
+  context 'babysitter works 1 hour between bed and midnight' do
+    let(:start) { 22 }
+    let(:stop)  { 23 }
+
+    it 'returns 8' do
+      expect(subject).to eq(8)
     end
   end
 end
