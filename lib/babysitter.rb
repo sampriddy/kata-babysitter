@@ -1,5 +1,5 @@
 class Babysitter
-  attr_reader :start_time, :end_time, :bedtime, :midnight
+  attr_reader :start_time, :end_time, :bedtime
 
   def initialize(start_time, end_time, bedtime)
     @start_time = start_time
@@ -10,7 +10,8 @@ class Babysitter
   def calculate_pay
     [
       12 * hours_worked_before_bedtime,
-      8  * hours_worked_after_bedtime_before_midnight
+      8  * hours_worked_after_bedtime_before_midnight,
+      16 * hours_worked_after_midnight
     ].reduce(:+)
   end
 
@@ -32,8 +33,20 @@ class Babysitter
     hours_difference(start, stop)
   end
 
+  def hours_worked_after_midnight
+    return 0 unless end_time > midnight
+
+    start = [midnight, start_time].max
+
+    hours_difference(start, end_time)
+  end
+
   def midnight
-    Time.new(start_time.year, start_time.month, start_time.day + 1)
+    if (17..23).include? start_time.hour
+      Time.new(start_time.year, start_time.month, start_time.day + 1)
+    else
+      Time.new(start_time.year, start_time.month, start_time.day)
+    end
   end
 
   def hours_difference(start, stop)

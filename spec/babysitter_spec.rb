@@ -40,7 +40,7 @@ describe Babysitter do
       let(:start_time) { Time.new(2018, 03, 19, 0) }
       let(:end_time) { Time.new(2018, 03, 19, 1) }
 
-      it 'returns 8' do
+      it 'returns 16' do
         expect(subject.calculate_pay).to eq(16)
       end
     end
