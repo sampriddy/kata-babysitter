@@ -59,12 +59,22 @@ describe Babysitter do
       end
     end
 
-    context 'invalid start_time' do
+    context 'start_time not between 5:00 PM and 4:00 AM' do
       let(:start_time) { Time.new(2018, 03, 18, 16) }
       let(:end_time) { Time.new(2018, 03, 20, 20) }
 
       it 'should raise an error about the invalid start_time' do
         msg = "start_time must be between 5:00 PM and 4:00 AM"
+        expect { subject }.to raise_error(msg)
+      end
+    end
+
+    context 'end_time not between 5:00 PM and 4:00 AM' do
+      let(:start_time) { Time.new(2018, 03, 18, 17) }
+      let(:end_time) { Time.new(2018, 03, 19, 16) }
+
+      it 'should raise an error about the invalid end_time' do
+        msg = "end_time must be between 5:00 PM and 4:00 AM"
         expect { subject }.to raise_error(msg)
       end
     end
