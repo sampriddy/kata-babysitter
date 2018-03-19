@@ -1,4 +1,5 @@
 require 'rspec'
+require './lib/babysitter'
 
 describe 'Babysitter.calculate(start, stop, bedtime)' do
   let(:bed)   { 22 }
