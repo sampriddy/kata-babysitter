@@ -32,4 +32,13 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
       expect(subject).to eq(8)
     end
   end
+
+  context 'babysitter works 1 hour after midnight' do
+    let(:start) { 1 }
+    let(:stop)  { 2 }
+
+    it 'returns 16' do
+      expect(subject).to eq(16)
+    end
+  end
 end
