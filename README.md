@@ -1,3 +1,30 @@
+# How to run
+install ruby, then...
+
+```
+git clone https://github.com/sampriddy/kata-babysitter.git
+cd kata-babysitter
+gem install bundler
+bundle install
+bundle exec rspec
+```
+
+# Example usage
+
+```ruby
+(terminal, at project root)
+irb
+
+(irb)
+load('./lib/babysitter.rb')
+=> true
+start = '5 PM'
+stop  = '10 PM'
+bed   = '9 PM'
+Babysitter.new(start, stop, bed).calculate_wages
+=> 56
+```
+
 # Babysitter Kata
 
 ## Background
