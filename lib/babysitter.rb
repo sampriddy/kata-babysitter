@@ -20,21 +20,22 @@ class Babysitter
   def hours_before_bedtime
     return 0 unless (17...@bed).include?(@start)
 
-    res = [@stop, @bed].min - @start
-    res >= 0 ? res : 0
+    hours_difference(@start, [@stop, @bed].min)
   end
 
   def hours_between_bedtime_and_midnight
     return 0 if (0..4).include?(@start) || (17..@bed).include?(@stop)
 
-    res = [24, @stop].min - [@bed, @start].max
-    res >= 0 ? res : 0
+    hours_difference([@bed, @start].max, [24, @stop].min)
   end
 
   def hours_after_midnight
     return 0 unless (1..4).include?(@stop)
 
-    res = @stop - [0, @start].max
-    res >= 0 ? res : 0
+    hours_difference([0, @start].max, @stop)
+  end
+
+  def hours_difference(start, stop)
+    [stop - start, 0].max
   end
 end
