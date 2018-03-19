@@ -6,5 +6,6 @@ class Babysitter
   end
 
   def calculate_wages
+    0
   end
 end
