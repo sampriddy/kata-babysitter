@@ -39,6 +39,9 @@ class Babysitter
     [stop - start, 0].max
   end
 
+  # This converts the timestring to an integer value, and simultaneously
+  # ensures that AM times are appropriately greater than PM times for easy
+  # comparison in other functions.
   def parse_timestring(str)
     initial_integer, period = str.split
 
