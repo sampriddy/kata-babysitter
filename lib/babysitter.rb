@@ -56,8 +56,10 @@ class Babysitter
   end
 
   def raise_if_invalid!
-    if start_time.hour > 4 && start_time.hour < 17
+    if (5..16).include? start_time.hour
       raise "start_time must be between 5:00 PM and 4:00 AM"
+    elsif (5..16).include? end_time.hour
+      raise "end_time must be between 5:00 PM and 4:00 AM"
     end
   end
 end
