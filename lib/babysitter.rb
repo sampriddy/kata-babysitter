@@ -9,6 +9,6 @@ class Babysitter
   end
 
   def calculate_wages
-    0
+    12 * (@stop - @start)
   end
 end
