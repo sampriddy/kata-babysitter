@@ -1,12 +1,9 @@
 class Babysitter
-  # Start, stop, and bed are all expected to be integers representing hours
-  # in military time. Therefore 17 to 23 are 5:00PM to 11:00PM, and 0 to 4
-  # are 12:00AM to 4:00AM on the next day.
+  # Start, stop, and bed are expected to be strings of the format
+  # "#{integer} {AM/PM}", i.e "5 PM", "3 AM", and so on.
+
   def initialize(start, stop, bed)
-    @start, @stop, @bed =
-      [start, stop, bed].map do |hour|
-        (0..4).include?(hour) ? hour + 24 : hour
-      end
+    @start, @stop, @bed = [start, stop, bed].map {|str| parse_timestring(str)}
   end
 
   def calculate_wages
@@ -40,5 +37,14 @@ class Babysitter
 
   def hours_difference(start, stop)
     [stop - start, 0].max
+  end
+
+  def parse_timestring(str)
+    initial_integer, period = str.split
+
+    case period
+    when "AM" then initial_integer.to_i + 24
+    when "PM" then initial_integer.to_i + 12
+    end
   end
 end
