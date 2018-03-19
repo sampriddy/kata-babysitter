@@ -35,5 +35,14 @@ describe Babysitter do
         expect(subject.calculate_pay).to eq(8)
       end
     end
+
+    context 'working one full hour after midnight' do
+      let(:start_time) { Time.new(2018, 03, 19, 0) }
+      let(:end_time) { Time.new(2018, 03, 19, 1) }
+
+      it 'returns 8' do
+        expect(subject.calculate_pay).to eq(16)
+      end
+    end
   end
 end
