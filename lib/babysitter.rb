@@ -5,6 +5,8 @@ class Babysitter
     @start_time = start_time
     @end_time   = end_time
     @bedtime    = bedtime
+
+    raise_if_invalid!
   end
 
   def calculate_pay
@@ -51,5 +53,11 @@ class Babysitter
 
   def hours_difference(start, stop)
     (stop - start) / 3600
+  end
+
+  def raise_if_invalid!
+    if start_time.hour > 4 && start_time.hour < 17
+      raise "start_time must be between 5:00 PM and 4:00 AM"
+    end
   end
 end
