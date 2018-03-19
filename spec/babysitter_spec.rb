@@ -41,4 +41,19 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
       expect(subject).to eq(16)
     end
   end
+
+  context 'realistic example for sanity checking' do
+    let(:start) { 17 }
+    let(:stop)  { 2  }
+    let(:bed)   { 22 }
+
+    # 5 hours before bed = $60
+    # 2 hours between bed and midnight = $16
+    # 2 hours after midnight = $32
+    # total: $108
+
+    it 'returns 108' do
+      expect(subject).to eq(108)
+    end
+  end
 end
