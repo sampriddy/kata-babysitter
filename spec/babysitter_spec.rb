@@ -78,5 +78,15 @@ describe Babysitter do
         expect { subject }.to raise_error(msg)
       end
     end
+
+    context 'end_time is before start_time' do
+      let(:start_time) { Time.new(2018, 03, 18, 20) }
+      let(:end_time) { Time.new(2018, 03, 18, 18) }
+
+      it 'should raise an error about it' do
+        msg = "end_time must be after start_time"
+        expect { subject }.to raise_error(msg)
+      end
+    end
   end
 end
