@@ -26,5 +26,14 @@ describe Babysitter do
         expect(subject).to eq(12)
       end
     end
+
+    context 'working one full hour after bedtime' do
+      let(:start_time) { Time.new(2018, 03, 18, 23) }
+      let(:end_time) { Time.new(2018, 03, 18, 24) }
+
+      it 'returns 8' do
+        expect(subject).to eq(8)
+      end
+    end
   end
 end
