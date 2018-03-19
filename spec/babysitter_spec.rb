@@ -69,4 +69,22 @@ describe 'Babysitter.calculate(start, stop, bedtime)' do
       end
     end
   end
+
+  context 'babysitter starts before 5 PM' do
+    let(:start) { '4 PM' }
+
+    it 'raises an error' do
+      msg = "invalid timestring: #{start}. Valid examples: '4 AM', '10 PM'"
+      expect{subject.new('4 PM', '10 PM', '10 PM')}.to raise_error(msg)
+    end
+  end
+
+  context 'babysitter stops after 4 AM' do
+    let(:stop) { '5 AM' }
+
+    it 'raises an error' do
+      msg = "invalid timestring: #{stop}. Valid examples: '4 AM', '10 PM'"
+      expect{subject.new('10 PM', stop, '10 PM')}.to raise_error(msg)
+    end
+  end
 end
