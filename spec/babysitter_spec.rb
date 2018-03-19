@@ -58,5 +58,15 @@ describe Babysitter do
         expect(subject.calculate_pay).to eq(108)
       end
     end
+
+    context 'invalid start_time' do
+      let(:start_time) { Time.new(2018, 03, 18, 16) }
+      let(:end_time) { Time.new(2018, 03, 20, 20) }
+
+      it 'should raise an error about the invalid start_time' do
+        msg = "start_time must be between 5:00 PM and 4:00 AM"
+        expect { subject }.to raise_error(msg)
+      end
+    end
   end
 end
