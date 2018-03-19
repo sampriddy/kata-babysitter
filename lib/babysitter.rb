@@ -4,4 +4,7 @@ class Babysitter
     @stop = stop
     @bed = bed
   end
+
+  def calculate_wages
+  end
 end
