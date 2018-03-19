@@ -3,7 +3,7 @@ require './lib/babysitter'
 
 describe Babysitter do
   describe '.calculate_pay(start_time, end_time, bedtime)' do
-    subject { described_class.calculate(start_time, end_time, bed_time) }
+    subject { described_class.new(start_time, end_time, bed_time) }
 
     let(:bed_time) { Time.new(2018, 03, 18, 22) }
 
@@ -14,7 +14,7 @@ describe Babysitter do
       let(:end_time) { start_time }
 
       it 'returns 0' do
-        expect(subject).to eq(0)
+        expect(subject.calculate_pay).to eq(0)
       end
     end
 
@@ -23,7 +23,7 @@ describe Babysitter do
       let(:end_time) { Time.new(2018, 03, 18, 18) }
 
       it 'returns 12' do
-        expect(subject).to eq(12)
+        expect(subject.calculate_pay).to eq(12)
       end
     end
 
@@ -32,7 +32,7 @@ describe Babysitter do
       let(:end_time) { Time.new(2018, 03, 18, 24) }
 
       it 'returns 8' do
-        expect(subject).to eq(8)
+        expect(subject.calculate_pay).to eq(8)
       end
     end
   end
