@@ -17,7 +17,10 @@ class Babysitter
   private
   def hours_worked_before_bedtime
     return 0 if start_time >= bedtime
-    ([end_time, bedtime].min - start_time) / 3600
+
+    stop = [end_time, bedtime].min
+
+    hours_difference(start_time, stop)
   end
 
   def hours_worked_after_bedtime_before_midnight
@@ -26,10 +29,14 @@ class Babysitter
     start = [start_time, bedtime].max
     stop  = [midnight, end_time].min
 
-    (stop - start) / 3600
+    hours_difference(start, stop)
   end
 
   def midnight
     Time.new(start_time.year, start_time.month, start_time.day + 1)
+  end
+
+  def hours_difference(start, stop)
+    (stop - start) / 3600
   end
 end
